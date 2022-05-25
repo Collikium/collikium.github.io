@@ -1,1 +1,1 @@
-# Collikium.github.io
+# collikium.github.io
