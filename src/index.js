@@ -1,10 +1,7 @@
-// Import the functions you need from the SDKs you need
+// Import the functions from the SDKs
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Firebase's configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBgTaO4P1RT0CVeoPbXp23DZjoHEq2r7ow",
   authDomain: "collikium.firebaseapp.com",
