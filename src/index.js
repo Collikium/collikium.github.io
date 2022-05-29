@@ -1,22 +1,21 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-const firebaseApp = initializeApp({
-    apiKey: "AIzaSyBgTaO4P1RT0CVeoPbXp23DZjoHEq2r7ow",
-    authDomain: "collikium.firebaseapp.com",
-    projectId: "collikium",
-    storageBucket: "collikium.appspot.com",
-    messagingSenderId: "100840388389",
-    appId: "1:100840388389:web:100df31ab1acae7e684ccc",
-    measurementId: "G-NPS1BBNB43"
-  });
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBgTaO4P1RT0CVeoPbXp23DZjoHEq2r7ow",
+  authDomain: "collikium.firebaseapp.com",
+  projectId: "collikium",
+  storageBucket: "collikium.appspot.com",
+  messagingSenderId: "100840388389",
+  appId: "1:100840388389:web:100df31ab1acae7e684ccc",
+  measurementId: "G-NPS1BBNB43"
+};
 
-  const auth = getAuth(firebaseApp);
+// Initialize Firebase
+initializeApp(firebaseConfig)
 
-  onAuthStateChanged(auth, user => {
-    if (user != null) {
-      console.log('logged in!'); 
-    } else {
-      console.log('No usser')
-    }
-  })
+console.log("Hello World")
