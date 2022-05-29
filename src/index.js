@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const firebaseApp = initializeApp({
     apiKey: "AIzaSyBgTaO4P1RT0CVeoPbXp23DZjoHEq2r7ow",
@@ -11,5 +11,12 @@ const firebaseApp = initializeApp({
     measurementId: "G-NPS1BBNB43"
   });
 
+  const auth = getAuth(firebaseApp);
 
-  
+  onAuthStateChanged(auth, user => {
+    if (user != null) {
+      console.log('logged in!'); 
+    } else {
+      console.log('No usser')
+    }
+  })
