@@ -30,13 +30,23 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/entry-code-generator.js":
+/*!*************************************!*\
+  !*** ./src/entry-code-generator.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ \"./node_modules/firebase/app/dist/index.esm.js\");\n// Import the functions you need from the SDKs you need\n\n// TODO: Add SDKs for Firebase products that you want to use\n// https://firebase.google.com/docs/web/setup#available-libraries\n\n// Your web app's Firebase configuration\n// For Firebase JS SDK v7.20.0 and later, measurementId is optional\nconst firebaseConfig = {\n  apiKey: \"AIzaSyBgTaO4P1RT0CVeoPbXp23DZjoHEq2r7ow\",\n  authDomain: \"collikium.firebaseapp.com\",\n  projectId: \"collikium\",\n  storageBucket: \"collikium.appspot.com\",\n  messagingSenderId: \"100840388389\",\n  appId: \"1:100840388389:web:100df31ab1acae7e684ccc\",\n  measurementId: \"G-NPS1BBNB43\"\n};\n\n// Initialize Firebase\n(0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.initializeApp)(firebaseConfig)\n\n\n\nfunction sleep(ms) {\n    return new Promise(resolve => setTimeout(resolve, ms));\n}\n\n// Generate the entry code\nasync function codeGenerator(codeLength, time) {\n    var result           = '';\n    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';\n    var charactersLength = characters.length;\n\n    for (let i = 0; i < time; i++) {\n        console.log(`New code will be generated in ${time-i} `);\n        await sleep(i * 1000);\n    }\n    for ( var i = 0; i < codeLength; i++ ) {\n        result += characters.charAt(Math.floor(Math.random() * \n   charactersLength));\n     }\n    console.log(result)\n}\n\ncodeGenerator(6, 5)\n\n\n//# sourceURL=webpack://collikium/./src/entry-code-generator.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ \"./node_modules/firebase/app/dist/index.esm.js\");\n// Import the functions you need from the SDKs you need\n\n// TODO: Add SDKs for Firebase products that you want to use\n// https://firebase.google.com/docs/web/setup#available-libraries\n\n// Your web app's Firebase configuration\n// For Firebase JS SDK v7.20.0 and later, measurementId is optional\nconst firebaseConfig = {\n  apiKey: \"AIzaSyBgTaO4P1RT0CVeoPbXp23DZjoHEq2r7ow\",\n  authDomain: \"collikium.firebaseapp.com\",\n  projectId: \"collikium\",\n  storageBucket: \"collikium.appspot.com\",\n  messagingSenderId: \"100840388389\",\n  appId: \"1:100840388389:web:100df31ab1acae7e684ccc\",\n  measurementId: \"G-NPS1BBNB43\"\n};\n\n// Initialize Firebase\n(0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.initializeApp)(firebaseConfig)\n\nconsole.log(\"Hello World\")\n\n//# sourceURL=webpack://collikium/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ \"./node_modules/firebase/app/dist/index.esm.js\");\n// Import the functions you need from the SDKs you need\n\n// TODO: Add SDKs for Firebase products that you want to use\n// https://firebase.google.com/docs/web/setup#available-libraries\n\n// Your web app's Firebase configuration\n// For Firebase JS SDK v7.20.0 and later, measurementId is optional\nconst firebaseConfig = {\n  apiKey: \"AIzaSyBgTaO4P1RT0CVeoPbXp23DZjoHEq2r7ow\",\n  authDomain: \"collikium.firebaseapp.com\",\n  projectId: \"collikium\",\n  storageBucket: \"collikium.appspot.com\",\n  messagingSenderId: \"100840388389\",\n  appId: \"1:100840388389:web:100df31ab1acae7e684ccc\",\n  measurementId: \"G-NPS1BBNB43\"\n};\n\n// Initialize Firebase\n(0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.initializeApp)(firebaseConfig)\n\n\n\n\n//# sourceURL=webpack://collikium/./src/index.js?");
 
 /***/ }),
 
@@ -162,7 +172,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
+/******/ 	__webpack_require__("./src/index.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/entry-code-generator.js");
 /******/ 	
 /******/ })()
 ;

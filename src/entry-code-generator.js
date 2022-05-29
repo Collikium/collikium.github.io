@@ -19,3 +19,26 @@ const firebaseConfig = {
 initializeApp(firebaseConfig)
 
 
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// Generate the entry code
+async function codeGenerator(codeLength, time) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+
+    for (let i = 0; i < time; i++) {
+        console.log(`New code will be generated in ${time-i} `);
+        await sleep(i * 1000);
+    }
+    for ( var i = 0; i < codeLength; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * 
+   charactersLength));
+     }
+    console.log(result)
+}
+
+codeGenerator(6, 5)
