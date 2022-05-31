@@ -8,6 +8,52 @@
     <script src="bundle.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
+<py-script>
+    # Collikium Code Generator By surec-or on github #
+
+    # Block 1 #
+    #  Setup  #
+
+    import time
+    import random
+    import string
+
+    code = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+    go = 1
+
+    # Block 2 #
+    #  Code  #
+
+    def gencode():
+        global code
+        index = 0
+        for n in range (20):
+            if random.randint(1,2) == 1:
+                code[index] = random.choice(string.ascii_letters)
+            else:
+                code[index] = str(random.randint(0,9))
+            index +=1
+        forstring = ""
+        realcode = forstring.join(code)
+        print(f"New code is: {realcode}")
+        file = open("dist/code.txt", "w")
+        file.write(realcode)
+        file.close()
+    
+    while True:
+    
+        if go == 1:
+            gencode()
+            time.sleep(1)
+            #time.sleep(86400)
+        else:
+            file = open("dist/code.txt", "w")
+            file.write("")
+            file.close()
+
+</py-script>
+
 <body>
     
 </body>
