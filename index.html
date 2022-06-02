@@ -8,13 +8,30 @@
     <script src="bundle.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+<!-- Tabs -->
   <form id="login">
     <div class="tab">
-      <button class="tablinks">Login</button>
-      <button class="tablinks">Register</button>
-    </div>
+  <button class="tablinks" onclick="openCity(event, 'Login')">Login</button>
+  <button class="tablinks" onclick="openCity(event, 'Create Account')">Create Account</button>
+</div>
+
+<!-- Tab content -->
+<div id="Login" class="tabcontent">
+  <h3>Login</h3>
+  <!-- Login Code -->
+</div>
+
+<div id="Create Account" class="tabcontent">
+  <h3>Create Account</h3>
+  <!-- Creat Account Code -->
+</div>
+
   </form>
-     </hr>
+
+<hr/> 
+
 </body>
 </html>
