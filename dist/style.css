@@ -1,3 +1,65 @@
+@font-face {
+    font-family: 'bayonregular';
+    src: url('bayon-regular-webfont.woff2') format('woff2'),
+         url('bayon-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 body {
-    background-color: rgba(157, 207, 206, 1)
+  background-color: rgba(157, 207, 206, 1)
+}
+
+form {
+  background-color: rgba(245, 245, 245, 1);
+  width:400px;
+  height: 607px;
+  padding: 10px;
+  margin: 150px auto;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+
+.top-heading {
+  font-family: bayonregular;
+  font-weight: lighter;
+  font-size: 50px;
+  text-align: center; 
+}
+
+.input-heading {
+  font-family: bayonregular;
+  font-weight: lighter;
+  font-size: 30px;
+  color: rgba(0, 0, 0, 0.26);
+  text-align:left;
+  padding-left: 32px; 
+}
+
+input[type="text"],input[type="password"]  {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 340px;
+  height: 50px;
+  border-radius: 20px ;
+  margin: -20px auto;
+  font-family: bayonregular;
+  font-weight: lighter;
+  font-size: 18px;
+  color: black
+}
+
+button {
+  margin: 50px auto;
+  width: 150px;
+  height: 50px;
+  border-radius: 20px;
+  font-family: bayonregular;
+  font-weight: lighter;
+  font-size: 30px;
+  color: black;
+  text-align: center;
 }
