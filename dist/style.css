@@ -12,12 +12,24 @@ body {
   text-align: center;
 }
 
-form {
+#loginForm {
   background-color: rgba(245, 245, 245, 1);
   width:400px;
   height: 500px;
   padding: 10px;
-  margin: 150px auto;
+  margin: 120px auto;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  display: inline-block;
+  text-align: center;
+}
+
+#registerForm {
+  background-color: rgba(245, 245, 245, 1);
+  width:400px;
+  height: 600px;
+  padding: 10px;
+  margin: 75px auto;
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.5);
   border-radius: 20px;
   display: inline-block;
