@@ -45,7 +45,9 @@ async function codeGenerator(codeLength, time) {
 // Write the entry code to the database...
 function writeUserData(code) {
     const db = getDatabase();
-    set(ref(db, 'Entry Code'), code)
+    set(ref(db, 'Entry Code'), {
+        
+    })
   }
 
 codeGenerator(6, 86400)
