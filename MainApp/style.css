@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'bayonregular';
+    src: url('../font/bayon-regular-webfont.woff2') format('woff2'),
+         url('../font/bayon-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+/* For Main App */
