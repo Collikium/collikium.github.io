@@ -48,7 +48,7 @@ const login = async (event) => {
   const email = loginEmail.value;
   const password = loginPassword.value;
   if (email == "" || password == ""){
-    console.log("Please enter your email and password")
+    showLoginError("Please enter your email and password")
   } else {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -56,8 +56,10 @@ const login = async (event) => {
     }
     catch(error) {
       const regex = /(?<=\().*?(?=\))/;
-      const errorMesseage = regex.exec(error)[0]
-      
+      const errorMesseage = `${regex.exec(error)[0].split("/")[1]}`
+      const readableError = authErrors.filter(error => error.error == errorMesseage)
+      console.log(readableError[0].messeage)
+      showLoginError(readableError[0].messeage)
     }
   }
 }

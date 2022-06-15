@@ -1,5 +1,7 @@
 import {AuthErrorCodes} from 'firebase/auth'
 
+export const loginForm = document.getElementById('loginForm')
+
 // Input variables
 export const loginEmail = document.getElementById('loginEmail')
 export const loginPassword = document.getElementById('loginPassword')
@@ -15,6 +17,9 @@ export const loginButton = document.getElementById('loginBtn')
 export const registerButton = document.getElementById('registerButton')
 
 export const showLoginError = (error) => {
-    errorMesseage.style.display = 'block';
-    errorMesseage.innerHTML = error;
+    loginErrorMesseage.style.display = 'block';
+    loginErrorMesseage.style.color = "red";
+    loginErrorMesseage.style.textDecoration = "underline";
+    loginErrorMesseage.innerHTML = error;
+    loginForm.style.height = `${loginForm.offsetHeight + loginErrorMesseage.offsetHeight}px`
 }
