@@ -16,14 +16,5 @@ export const registerButton = document.getElementById('registerButton')
 
 export const showLoginError = (error) => {
     errorMesseage.style.display = 'block';
-    if (error.code == 'auth/user-not-found') {
-        errorMesseage.innerHTML = `There is no account with the email and password above. Please try again.`
-    }
-    else if (error.code == 'auth/invalid-password') {
-        errorMesseage.innerHTML = `Password is invalid. Please try again.` 
-    }
-    else {
-        console.log(error.code)
-        errorMesseage.innerHTML = `Error: ${error.code}`
-    }
+    errorMesseage.innerHTML = error;
 }

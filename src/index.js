@@ -9,13 +9,19 @@ import {
   registerButton,
   errorMesseage,
   showLoginError,
+  loginErrorMesseage,
 } from './ui'
+
+import {
+  authErrors,
+} from './authErrors'
 
 
 // Import the functions from the SDKs
-import { initializeApp } from "firebase/app";
+import { FirebaseError, initializeApp } from "firebase/app";
 import {
   getAuth,
+  AuthErrorCodes,
   connectAuthEmulator,
   signInWithEmailAndPassword,
 } from 'firebase/auth'
@@ -37,33 +43,24 @@ const app = initializeApp(firebaseApp)
 // Initialize auth
 const auth = getAuth(app);
 
-function login(event) {
+const login = async (event) => {
   event.preventDefault();
   const email = loginEmail.value;
   const password = loginPassword.value;
-
-signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-      console.log(user)
-    })
-      .catch((error) => {
-      showLoginError(error)
-    })
+  if (email == "" || password == ""){
+    console.log("Please enter your email and password")
+  } else {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      console.log(userCredential.user);
+    }
+    catch(error) {
+      const regex = /(?<=\().*?(?=\))/;
+      const errorMesseage = regex.exec(error)[0]
+      
+    }
+  }
 }
 
-function register(event) {
-  event.preventDefault();
-  const email = registerEmail;
-  const password = registerPassword;
-
-  createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    // ...
-  })
-}
 
 loginButton.addEventListener('click', login)
