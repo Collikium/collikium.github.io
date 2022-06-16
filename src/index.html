@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Collikium</title>
 </head>
 
@@ -16,16 +16,25 @@
     <H2 class="input-heading">Password</H2>
     <input type="password" class="secureTextField" id="loginPassword">
     <button class="button" id="loginBtn">Submit</button>
-    <a id="loginErrorMesseage" style="display:none"></a>
     <a href="register.html">Don't have an account?</a>
   </form>
 
   <div class="loader-wrapper">
     <span class="loader"><span class="loader-inner"></span></span>
   </div>
+
+  <div class="error-messeage-wrapper">
+    <img src="https://www.pngall.com/wp-content/uploads/8/Red-Warning.png" class="error-image" width="50" height="50">
+    <a id="errorMesseageHeading">Oh snap!</a>
+
+    <div class="errorMesseageWrapper">
+      <a id="errorMesseage"></a>
+    </div>
+
+    <button id="error-dimiss-btn">Dimiss</button>
+  </div>
 </body>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="./index.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </html>

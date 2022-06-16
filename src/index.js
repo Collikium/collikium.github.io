@@ -9,8 +9,9 @@ import {
   registerButton,
   errorMesseage,
   showLoginError,
-  loginErrorMesseage,
+  ErrorMesseage,
   loader,
+  showErrorPopUp,
 } from './ui'
 
 import {
@@ -47,12 +48,14 @@ $(window).on("load",function(){
   $(".loader-wrapper").fadeOut("slow");
 });
 
-const login = async (event) => {
-  event.preventDefault();
+// Hiding the error Pop Up
+$(".error-messeage-wrapper").hide();
+
+const login = async (readableError) => {
   const email = loginEmail.value;
   const password = loginPassword.value;
   if (email == "" || password == "") {
-    showLoginError("Please enter your email and password")
+    readableError("Please enter your email and password")
   } else {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -61,13 +64,29 @@ const login = async (event) => {
     catch (error) {
       const regex = /(?<=\().*?(?=\))/;
       const errorMesseage = `${regex.exec(error)[0].split("/")[1]}`
-      const readableError = authErrors.filter(error => error.error == errorMesseage)
-      console.log(readableError[0].messeage)
-      showLoginError(readableError[0].messeage)
+      const readableErrors = authErrors.filter(error => error.error == errorMesseage)
+      // Passing the readble error to the next function
+      readableError(readableErrors[0].messeage)
     }
   }
 }
 
+// Login Submit Button
+$(document).ready(function(){
+  $("#loginBtn").click(function(event){
+      event.preventDefault()
+      login(showErrorPopUp);
+  }); 
+});
 
-
-loginButton.addEventListener('click', login)
+// Error Pop Up Dimiss Button
+$(document).ready(function(){
+  $("#error-dimiss-btn").click(function(event){
+      event.preventDefault()
+      $(".error-messeage-wrapper").fadeOut("slow")
+      $(window).ready(function(){
+        loginForm.style.filter = "blur(0px)"
+        loginForm.style.transition = "1s" 
+    })
+  }); 
+});

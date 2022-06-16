@@ -10,7 +10,8 @@ export const registerEmail = document.getElementById('registerEmail')
 export const registerPassword = document.getElementById('registerPassword')
 
 // Error Messeage
-export const loginErrorMesseage = document.getElementById('loginErrorMesseage')
+export const errorPopUp = document.getElementById('error-messeage-wrapper')
+export const errorMesseage = document.getElementById('errorMesseage')
 
 // Button variables
 export const loginButton = document.getElementById('loginBtn')
@@ -19,11 +20,13 @@ export const registerButton = document.getElementById('registerButton')
 // Loader
 export const loader = document.getElementById('loader')
 
-export const showLoginError = (error) => {
-    loginErrorMesseage.style.display = "inline-block"
-    loginErrorMesseage.style.textDecoration = "underline";
-    loginErrorMesseage.innerHTML = error;
-    loginForm.style.transition = "ease-in 0.5s"
-    loginForm.style.height = `${540 + loginErrorMesseage.offsetHeight}px`;
-    loginErrorMesseage.style.color = "red";
+export const showErrorPopUp = (error) => {
+    console.log("Hello")
+    $(".error-messeage-wrapper").fadeIn("slow")
+    $("#errorMesseage").html(`${error}`)
+    $(window).ready(function(){
+        loginForm.style.filter = "blur(20px)"
+        loginForm.style.transition = "1s" 
+    })
+    $(".error")
 }
