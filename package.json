@@ -22,6 +22,7 @@
   "dependencies": {
     "firebase": "^9.8.2",
     "gh-pages": "^4.0.0",
+    "jquery": "^3.6.0",
     "lodash": "^4.17.21",
     "serve": "^13.0.2"
   },

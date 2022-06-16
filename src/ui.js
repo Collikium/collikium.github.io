@@ -1,6 +1,6 @@
-import {AuthErrorCodes} from 'firebase/auth'
-
-export const loginForm = document.getElementById('loginForm')
+import {AuthErrorCodes} from 'firebase/auth';
+import './style.css';
+const loginForm = document.getElementById('loginForm')
 
 // Input variables
 export const loginEmail = document.getElementById('loginEmail')
@@ -16,10 +16,14 @@ export const loginErrorMesseage = document.getElementById('loginErrorMesseage')
 export const loginButton = document.getElementById('loginBtn')
 export const registerButton = document.getElementById('registerButton')
 
+// Loader
+export const loader = document.getElementById('loader')
+
 export const showLoginError = (error) => {
-    loginErrorMesseage.style.display = 'block';
-    loginErrorMesseage.style.color = "red";
+    loginErrorMesseage.style.display = "inline-block"
     loginErrorMesseage.style.textDecoration = "underline";
     loginErrorMesseage.innerHTML = error;
-    loginForm.style.height = `${loginForm.offsetHeight + loginErrorMesseage.offsetHeight}px`
+    loginForm.style.transition = "ease-in 0.5s"
+    loginForm.style.height = `${540 + loginErrorMesseage.offsetHeight}px`;
+    loginErrorMesseage.style.color = "red";
 }

@@ -10,12 +10,12 @@ import {
   errorMesseage,
   showLoginError,
   loginErrorMesseage,
+  loader,
 } from './ui'
 
 import {
   authErrors,
-} from './authErrors'
-
+} from './authErrors';
 
 // Import the functions from the SDKs
 import { FirebaseError, initializeApp } from "firebase/app";
@@ -24,7 +24,7 @@ import {
   AuthErrorCodes,
   connectAuthEmulator,
   signInWithEmailAndPassword,
-} from 'firebase/auth'
+} from 'firebase/auth';
 
 // Firebase's configuration
 const firebaseApp = {
@@ -39,22 +39,26 @@ const firebaseApp = {
 };
 
 const app = initializeApp(firebaseApp)
-
 // Initialize auth
 const auth = getAuth(app);
+
+// Loader
+$(window).on("load",function(){
+  $(".loader-wrapper").fadeOut("slow");
+});
 
 const login = async (event) => {
   event.preventDefault();
   const email = loginEmail.value;
   const password = loginPassword.value;
-  if (email == "" || password == ""){
+  if (email == "" || password == "") {
     showLoginError("Please enter your email and password")
   } else {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       console.log(userCredential.user);
     }
-    catch(error) {
+    catch (error) {
       const regex = /(?<=\().*?(?=\))/;
       const errorMesseage = `${regex.exec(error)[0].split("/")[1]}`
       const readableError = authErrors.filter(error => error.error == errorMesseage)
@@ -63,6 +67,7 @@ const login = async (event) => {
     }
   }
 }
+
 
 
 loginButton.addEventListener('click', login)

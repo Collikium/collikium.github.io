@@ -19,35 +19,35 @@ initializeApp(firebaseConfig)
 
 
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 // Generate the entry code...
 async function codeGenerator(codeLength, time) {
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
+  var result = '';
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
 
-    while (true) {
+  while (true) {
     result = '';
     for (let i = 0; i < time; i++) {
-        console.log(`New code will be generated in ${time-i} seconds`);
-        await sleep(i * 1000);
+      console.log(`New code will be generated in ${time - i} seconds`);
+      await sleep(i * 1000);
     }
-    for ( var i = 0; i < codeLength; i++ ) {
-        result += characters.charAt(Math.floor(Math.random() * 
-   charactersLength));
-     }
+    for (var i = 0; i < codeLength; i++) {
+      result += characters.charAt(Math.floor(Math.random() *
+        charactersLength));
+    }
     writeUserData(result);
-    }
+  }
 }
 
 // Write the entry code to the database...
 function writeUserData(code) {
-    const db = getDatabase();
-    set(ref(db, 'Entry Code'), {
-        
-    })
-  }
+  const db = getDatabase();
+  set(ref(db, 'Entry Code'), {
+
+  })
+}
 
 codeGenerator(6, 86400)
