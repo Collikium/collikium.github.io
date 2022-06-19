@@ -11,16 +11,30 @@
 <body>
     <form id="registerForm">
         <H1 class="top-heading">Register</H1>
-        <H2 class="input-heading">Name</H2>
-        <input type="text" class="textField" id="registerName">
-        <H2 class="input-heading">Email</H2>
-        <input type="text" class="textField" id="registerEmail">
-        <H2 class="input-heading">Password</H2>
-        <input type="password" class="secureTextField" id="registerPassword">
-        <button class="button" id="registerButton">Submit</button>
+        <input type="text" class="textField" id="registerName" placeholder="Name">
+        <input type="text" class="textField" id="registerEmail" placeholder="Email Address">
+        <input type="password" class="secureTextField" id="registerPassword" placeholder="Password">
+        <input type="password" class="secureTextField" id="registerConfirmPassword" placeholder="Confirm Password">
+        <button class="button" id="registerBtn">Submit</button>
         <a id="registerErrorMesseage" style="display:none"></a>
         <a href="index.html">Already have an account?</a>
     </form>
+
+    <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+
+    <div class="error-messeage-wrapper">
+        <img src="https://www.pngall.com/wp-content/uploads/8/Red-Warning.png" class="error-image" width="50"
+            height="50">
+        <a id="errorMesseageHeading">Oh snap!</a>
+
+        <a id="errorMesseage"></a>
+
+        <button id="error-dimiss-btn">Dimiss</button>
+    </div>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </html>

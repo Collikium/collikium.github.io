@@ -1,4 +1,3 @@
-import './style.css';
 import {
   loginEmail,
   loginPassword,
@@ -76,6 +75,13 @@ $(document).ready(function(){
   $("#loginBtn").click(function(event){
       event.preventDefault()
       login(showErrorPopUp);
+  }); 
+});
+
+$(document).ready(function(){
+  $("#registerBtn").click(function(event){
+      event.preventDefault()
+      console.log("Worked")
   }); 
 });
 
