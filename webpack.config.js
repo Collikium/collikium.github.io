@@ -1,10 +1,10 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: 'development',
-  devtool: 'eval-source-map',
-  entry: './src/index.js',
+  entry: ['./src/index.js', './src/ui.js'],
   devtool: 'inline-source-map',
   devServer: {
     static: './dist',
@@ -17,11 +17,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader',]
       }
     ]
   },
@@ -31,8 +28,9 @@ module.exports = {
       template: './src/index.html'
     }),
     new HtmlWebpackPlugin({
-        filename: 'register.html',
-        template: './src/register.html'
-      })
+      filename: 'register.html',
+      template: './src/register.html'
+    }),
+    new MiniCssExtractPlugin({ filename: "[name].[contentHash].css" })
   ],
 }

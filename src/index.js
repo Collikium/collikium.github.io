@@ -62,7 +62,7 @@ const login = async (readableError) => {
       console.log(userCredential.user);
     }
     catch (error) {
-      const regex = /(?<=\().*?(?=\))/;
+      const regex = /(?:\/)([^#]+)(?=#|$)/;
       const errorMesseage = `${regex.exec(error)[0].split("/")[1]}`
       const readableErrors = authErrors.filter(error => error.error == errorMesseage)
       // Passing the readble error to the next function

@@ -3,35 +3,36 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Collikium</title>
 </head>
 
 <body>
-  <form id="loginForm">
-    <H1 class="top-heading">Login</H1>
-    <H2 class="input-heading">Email</H2>
-    <input type="text" class="textField" id="loginEmail">
-    <H2 class="input-heading">Password</H2>
-    <input type="password" class="secureTextField" id="loginPassword">
-    <button class="button" id="loginBtn">Submit</button>
-    <a href="register.html">Don't have an account?</a>
-  </form>
+  <div class="container">
+    <form id="loginForm">
+      <H1 class="top-heading">Login</H1>
+      <H2 class="input-heading">Email</H2>
+      <input type="text" class="textField" id="loginEmail">
+      <H2 class="input-heading">Password</H2>
+      <input type="password" class="secureTextField" id="loginPassword">
+      <button class="button" id="loginBtn">Submit</button>
+      <a href="register.html">Don't have an account?</a>
+    </form>
 
-  <div class="loader-wrapper">
-    <span class="loader"><span class="loader-inner"></span></span>
-  </div>
-
-  <div class="error-messeage-wrapper">
-    <img src="https://www.pngall.com/wp-content/uploads/8/Red-Warning.png" class="error-image" width="50" height="50">
-    <a id="errorMesseageHeading">Oh snap!</a>
-
-    <div class="errorMesseageWrapper">
-      <a id="errorMesseage"></a>
+    <div class="loader-wrapper">
+      <span class="loader"><span class="loader-inner"></span></span>
     </div>
 
-    <button id="error-dimiss-btn">Dimiss</button>
+    <div class="error-messeage-wrapper">
+      <img src="https://www.pngall.com/wp-content/uploads/8/Red-Warning.png" class="error-image" width="50" height="50">
+      <a id="errorMesseageHeading">Oh snap!</a>
+
+      <div class="errorMesseageWrapper">
+        <a id="errorMesseage"></a>
+      </div>
+
+      <button id="error-dimiss-btn">Dimiss</button>
+    </div>
   </div>
 </body>
 
