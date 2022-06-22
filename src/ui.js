@@ -1,6 +1,7 @@
-import {AuthErrorCodes} from 'firebase/auth';
+import { AuthErrorCodes } from 'firebase/auth';
 import './style.css';
-const loginForm = document.getElementById('loginForm')
+export const loginForm = document.getElementById('loginForm')
+export const registerForm = document.getElementById('registerForm')
 
 // Input variables
 export const loginEmail = document.getElementById('loginEmail')
@@ -20,13 +21,17 @@ export const registerButton = document.getElementById('registerButton')
 // Loader
 export const loader = document.getElementById('loader')
 
-export const showErrorPopUp = (error) => {
-    console.log("Hello")
+export const showErrorPopUp = (error, page) => {
     $(".error-messeage-wrapper").fadeIn("slow")
     $("#errorMesseage").html(`${error}`)
-    $(window).ready(function(){
-        loginForm.style.filter = "blur(20px)"
-        loginForm.style.transition = "1s" 
+    $(window).ready(function () {
+        if (page == "login") {
+            loginForm.style.filter = "blur(20px)"
+            loginForm.style.transition = "1s"
+        } else {
+            registerForm.style.filter = "blur(20px)"
+            registerForm.style.transition = "1s"
+        }
     })
     $(".error")
 }
