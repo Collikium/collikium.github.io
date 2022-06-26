@@ -57,6 +57,7 @@ const auth = getAuth(app);
 // Loader
 $(window).on("load", function () {
   $(".loader-wrapper").fadeOut("slow");
+  monitorAuthState()
 });
 
 // User Information
