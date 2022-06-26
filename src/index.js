@@ -55,13 +55,18 @@ const app = initializeApp(firebaseApp)
 const auth = getAuth(app);
 
 // Loader
-$(window).on("load", function () {
-  $(".loader-wrapper").fadeOut("slow");
-  monitorAuthState()
-});
+$(window).on('load', function() {
+  const re = /^.*\//;
+  if (window.location.href == re.exec(window.location.href)[0]) {
+    monitorAuthState()
+  } else {
+    $('.loader-wrapper').fadeOut("slow")
+  }
+}) 
 
 // User Information
 var user;
+const userState = ""
 
 
 
@@ -73,7 +78,7 @@ const login = async (readableError) => {
   } else {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      $('.loader-wrapper').fadeIn(function() {
+      $('.loader-wrapper').fadeIn(function () {
         user = auth.currentUser
         window.location.href = 'dashboard'
       })
@@ -130,7 +135,7 @@ const monitorAuthState = async () => {
     if (user) {
       window.location.href = 'dashboard'
     } else {
-      window.location.href = 'index'
+      window.location.href = 'login.html'
     }
   });
 }
