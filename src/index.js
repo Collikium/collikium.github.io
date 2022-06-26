@@ -12,12 +12,18 @@ import {
   loader,
   showErrorPopUp,
   loginForm,
-  registerForm
-} from './ui'
+  registerForm,
+  profileInitial,
+  profileImageHolder,
+  registerConfirmPassword
+} from './ui';
+
+import warningSymbol from '../assets/warning-symbol.png'
+import profilePictureHolder from '../assets/profile-picture-holder.png'
 
 import {
   authErrors,
-} from './authErrors';
+} from './authErrors.js';
 
 // Import the functions from the SDKs
 import { FirebaseError, initializeApp } from "firebase/app";
@@ -26,7 +32,11 @@ import {
   AuthErrorCodes,
   connectAuthEmulator,
   signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  updateProfile
 } from 'firebase/auth';
+import { isEmpty } from 'lodash';
 
 // Firebase's configuration
 const firebaseApp = {
@@ -49,48 +59,79 @@ $(window).on("load", function () {
   $(".loader-wrapper").fadeOut("slow");
 });
 
-// Hiding the error Pop Up
-$(".error-messeage-wrapper").hide();
+// User Information
+var user;
 
-// Page the user on
-const page = ""
 
-const login = async (readableError, page) => {
+
+const login = async (readableError) => {
   const email = loginEmail.value;
   const password = loginPassword.value;
   if (email == "" || password == "") {
-    readableError("Please enter your email and password", "login")
-    page = "login"
+    readableError("Please enter your email and password")
   } else {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      console.log(userCredential.user);
+      $('.loader-wrapper').fadeIn(function() {
+        user = auth.currentUser
+        window.location.href = 'dashboard'
+      })
     }
     catch (error) {
-      const regex = /(?:\/)([^#]+)(?=#|$)/;
-      const errorMesseage = `${regex.exec(error)[0].split("/")[1]}`
+      const regex = /(?:\/)([^#]+)(?=#*)/;
+      const errorMesseage = `${regex.exec(error)[0].split(")")[0].split("/")[1]}`
       const readableErrors = authErrors.filter(error => error.error == errorMesseage)
       // Passing the readble error to the next function
-      readableError(readableErrors[0].messeage, "login")
-      page = "login"
+      readableError(readableErrors[0].messeage)
     }
   }
 }
 
-const register = async (readableError, page) => {
+
+const register = async (readableError) => {
   const email = registerEmail.value;
   const password = registerPassword.value;
+  const name = registerName.value;
   if (email == "" || password == "") {
-    readableError("Please enter your email and password", "register")
-    page = "register"
+    readableError("Please enter your email and password")
+  } else if (registerConfirmPassword.value != password) {
+    readableError("The password and the confirm password aren't match, please try again!")
   } else {
     try {
-
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      $(".loader-wrapper").fadeIn(function () {
+        updateProfile(auth.currentUser, {
+          displayName: `${registerName.value}`
+        }).then(() => {
+          user = auth.currentUser
+          window.location.href = 'dashboard'
+        }).catch((error) => {
+          const regex = /(?:\/)([^#]+)(?=#*)/;
+          const errorMesseage = `${regex.exec(error)[0].split(")")[0].split("/")[1]}`
+          const readableErrors = authErrors.filter(error => error.error == errorMesseage)
+          // Passing the readble error to the next function
+          readableError(readableErrors[0].messeage)
+        })
+      })
     }
     catch (error) {
-
+      const regex = /(?:\/)([^#]+)(?=#*)/;
+      const errorMesseage = `${regex.exec(error)[0].split(")")[0].split("/")[1]}`
+      const readableErrors = authErrors.filter(error => error.error == errorMesseage)
+      // Passing the readble error to the next function
+      readableError(readableErrors[0].messeage)
     }
   }
+}
+
+const monitorAuthState = async () => {
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      window.location.href = 'dashboard'
+    } else {
+      window.location.href = 'index'
+    }
+  });
 }
 
 // Login Submit Button
@@ -125,3 +166,26 @@ $(document).ready(function () {
 
   });
 });
+
+$('#registerName').change(function () {
+  var registerNameSplited = []
+  var userInitial = ""
+  // Obtain User's Name and split it by white spaces.
+  if (registerName.value != "") {
+    registerNameSplited = registerName.value.split(" ")
+    for (let object in registerNameSplited) {
+      userInitial += registerNameSplited[object].split("")[0]
+      $('#registerProfileImageHolder').fadeOut(function () {
+        $('#profileInitial').fadeIn()
+      })
+    }
+    profileInitial.innerHTML = userInitial
+
+  } else {
+    registerNameSplited = []
+    profileInitial.innerHTML = ""
+    $('#profileInitial').fadeOut(function () {
+      $('#registerProfileImageHolder').fadeIn()
+    })
+  }
+})

@@ -9,6 +9,11 @@ export const loginPassword = document.getElementById('loginPassword')
 export const registerName = document.getElementById('registerName')
 export const registerEmail = document.getElementById('registerEmail')
 export const registerPassword = document.getElementById('registerPassword')
+export const registerConfirmPassword = document.getElementById('registerConfirmPassword')
+
+// Profile
+export const profileImageHolder = document.getElementById('registerProfileImageHolder')
+export const profileInitial = document.getElementById('profileInitial')
 
 // Error Messeage
 export const errorPopUp = document.getElementById('error-messeage-wrapper')

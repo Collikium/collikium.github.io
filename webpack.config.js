@@ -19,7 +19,15 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader',]
-      }
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          emmiFile: true,
+        }
+      },
     ]
   },
   plugins: [
@@ -30,6 +38,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'register.html',
       template: './src/register.html'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'dashboard.html',
+      template: './src/dashboard.html'
     }),
     new MiniCssExtractPlugin({ filename: "[name].[contentHash].css" })
   ],
