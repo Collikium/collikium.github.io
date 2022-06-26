@@ -34,7 +34,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
-  updateProfile
+  updateProfile,
 } from 'firebase/auth';
 import { isEmpty } from 'lodash';
 
@@ -54,20 +54,39 @@ const app = initializeApp(firebaseApp)
 // Initialize auth
 const auth = getAuth(app);
 
-// Loader
-$(window).on('load', function() {
-  const re = /^.*\//;
-  if (window.location.href == re.exec(window.location.href)[0]) {
-    monitorAuthState()
-  } else {
-    $('.loader-wrapper').fadeOut("slow")
-  }
-}) 
-
 // User Information
-var user;
-const userState = ""
+var userProfile
 
+// Loader
+const re = /^.*\//;
+if (window.location.href == re.exec(window.location.href)[0]) {
+  const re = /^.*\//;
+  onAuthStateChanged(auth, user => {
+    if (user && window.location.href == re.exec(window.location.href)[0]) {
+      if (user != null) {
+        userProfile = user
+        window.location.href = 'dashboard'
+      } else {
+        window.location.href = 'login'
+      }
+    } else {
+      start()
+    }
+  });
+} else {
+  $(window).on('load', function() {
+    const re = /^.*\//;
+      $('.loader-wrapper').fadeOut("slow")
+      onAuthStateChanged(auth, user => {
+        if (user != null) {
+          userProfile = user
+          console.log(userProfile)
+        } else {
+          window.location.href = 'login'
+        }
+      })
+  })
+}
 
 
 const login = async (readableError) => {
@@ -79,7 +98,7 @@ const login = async (readableError) => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       $('.loader-wrapper').fadeIn(function () {
-        user = auth.currentUser
+        userProfile = auth.currentUser
         window.location.href = 'dashboard'
       })
     }
@@ -109,7 +128,7 @@ const register = async (readableError) => {
         updateProfile(auth.currentUser, {
           displayName: `${registerName.value}`
         }).then(() => {
-          user = auth.currentUser
+          userProfile = auth.currentUser
           window.location.href = 'dashboard'
         }).catch((error) => {
           const regex = /(?:\/)([^#]+)(?=#*)/;
@@ -130,15 +149,6 @@ const register = async (readableError) => {
   }
 }
 
-const monitorAuthState = async () => {
-  onAuthStateChanged(auth, user => {
-    if (user) {
-      window.location.href = 'dashboard'
-    } else {
-      window.location.href = 'login.html'
-    }
-  });
-}
 
 // Login Submit Button
 $(document).ready(function () {
