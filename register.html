@@ -11,6 +11,10 @@
 <body>
     <form id="registerForm">
         <H1 class="top-heading">Register</H1>
+        <span class="profilePictureWrapper" id="profilePicture">
+            <img class="profileImageHolder" id="registerProfileImageHolder" src="./profile-picture-holder.png">
+            <p id="profileInitial" style="display:none"></p> 
+        </span>
         <input type="text" class="textField" id="registerName" placeholder="Name">
         <input type="text" class="textField" id="registerEmail" placeholder="Email Address">
         <input type="password" class="secureTextField" id="registerPassword" placeholder="Password">
@@ -25,7 +29,7 @@
     </div>
 
     <div class="error-messeage-wrapper">
-        <img src="https://www.pngall.com/wp-content/uploads/8/Red-Warning.png" class="error-image" width="50"
+        <img src="./warning-symbol.png" class="error-image" width="50"
             height="50">
         <a id="errorMesseageHeading">Oh snap!</a>
 
@@ -36,5 +40,8 @@
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(".error-messeage-wrapper").hide();
+    </script>
 
 </html>

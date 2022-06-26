@@ -14,7 +14,7 @@
       <input type="text" class="textField" id="loginEmail" placeholder="Email address">
       <input type="password" class="secureTextField" id="loginPassword" placeholder="Password">
       <button class="button" id="loginBtn">Submit</button>
-      <a href="register.html">Don't have an account?</a>
+      <a href="register">Don't have an account?</a>
     </form>
 
     <div class="loader-wrapper">
@@ -22,7 +22,7 @@
     </div>
 
     <div class="error-messeage-wrapper">
-      <img src="https://www.pngall.com/wp-content/uploads/8/Red-Warning.png" class="error-image" width="50" height="50">
+      <img src="./warning-symbol.png" class="error-image" width="50" height="50">
       <a id="errorMesseageHeading">Oh snap!</a>
 
       <a id="errorMesseage"></a>
@@ -33,5 +33,8 @@
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(".error-messeage-wrapper").hide();
+</script>
 
 </html>
