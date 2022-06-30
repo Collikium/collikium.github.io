@@ -15,7 +15,10 @@ import {
   registerForm,
   profileInitial,
   profileImageHolder,
-  registerConfirmPassword
+  registerConfirmPassword,
+  dashboardProfileInitial,
+  dashboardUserName,
+  dashboardSignOutButton,
 } from './ui';
 
 import warningSymbol from '../assets/warning-symbol.png'
@@ -56,36 +59,45 @@ const auth = getAuth(app);
 
 // User Information
 var userProfile
+var userInitial
 
 // Loader
 const re = /^.*\//;
-if (window.location.href == re.exec(window.location.href)[0]) {
-  const re = /^.*\//;
+const mainUrl = re.exec(window.location.href)
+if (window.location.href == mainUrl) {
   onAuthStateChanged(auth, user => {
-    if (user && window.location.href == re.exec(window.location.href)[0]) {
-      if (user != null) {
-        userProfile = user
-        window.location.href = 'dashboard'
-      } else {
-        window.location.href = 'login'
-      }
+    if (user != null) {
+      window.location.href = 'dashboard'
     } else {
-      start()
+      window.location.href = 'login'
+    }
+  });
+} else if (window.location.href == mainUrl + "login"){
+  onAuthStateChanged(auth, user => {
+    if (user != null) {
+      window.location.href = 'dashboard'
+    } else {
+      $('.loader-wrapper').fadeOut("slow")
+    }
+  });
+} else if (window.location.href == mainUrl + "register") {
+  onAuthStateChanged(auth, user => {
+    if (user != null) {
+      window.location.href = 'dashboard'
+    } else {
+      $('.loader-wrapper').fadeOut("slow")
     }
   });
 } else {
-  $(window).on('load', function() {
-    const re = /^.*\//;
+  onAuthStateChanged(auth, user => {
+    if (user != null) {
+      initialize(user)
       $('.loader-wrapper').fadeOut("slow")
-      onAuthStateChanged(auth, user => {
-        if (user != null) {
-          userProfile = user
-          console.log(userProfile)
-        } else {
-          window.location.href = 'login'
-        }
-      })
-  })
+      
+    } else {
+      window.location.href = 'login'
+    }
+  });
 }
 
 
@@ -149,6 +161,26 @@ const register = async (readableError) => {
   }
 }
 
+// Get User Initial...
+function getUserInitial(name) {
+  var registerNameSplited = []
+  // Obtain user's name and split it by white spaces
+  registerNameSplited = name.split(" ")
+  for (let object in registerNameSplited) {
+    userInitial += registerNameSplited[object].split("")[0]
+  }
+}
+
+// Fetch required data...
+function initialize(user) {
+  userProfile = user
+  userInitial = ""
+  getUserInitial(userProfile.displayName)
+  dashboardProfileInitial.innerHTML = userInitial
+  dashboardUserName.innerHTML = userProfile.displayName
+}
+
+
 
 // Login Submit Button
 $(document).ready(function () {
@@ -182,6 +214,16 @@ $(document).ready(function () {
 
   });
 });
+
+// Sign Out button
+$(document).ready(function() {
+  $("#dashboardSignOutButton").click(function(event) {
+    event.preventDefault()
+    $(".loader-wrapper").fadeIn("fast", function() {
+      
+    })
+  })
+})
 
 $('#registerName').change(function () {
   var registerNameSplited = []

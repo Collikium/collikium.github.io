@@ -2,7 +2,7 @@ import { AuthErrorCodes } from 'firebase/auth';
 import './style.css';
 export const loginForm = document.getElementById('loginForm')
 export const registerForm = document.getElementById('registerForm')
-
+// Login and Register page
 // Input variables
 export const loginEmail = document.getElementById('loginEmail')
 export const loginPassword = document.getElementById('loginPassword')
@@ -25,6 +25,15 @@ export const registerButton = document.getElementById('registerButton')
 
 // Loader
 export const loader = document.getElementById('loader')
+
+// Dashboard Page
+// User initial
+export const dashboardProfileInitial = document.getElementById('dashboardProfileInitial')
+// User name
+export const dashboardUserName = document.getElementById('dashboardUserName')
+// Sign Out Button 
+export const dashboardSignOutButton = document.getElementById('dashboardSignOutButton')
+
 
 export const showErrorPopUp = (error, page) => {
     $(".error-messeage-wrapper").fadeIn("slow")
