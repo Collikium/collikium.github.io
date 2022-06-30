@@ -73,7 +73,7 @@ if (window.location.href == mainUrl) {
       window.location.href = 'login'
     }
   });
-} else if (window.location.href == mainUrl + "login"){
+} else if (window.location.href == mainUrl + "login") {
   onAuthStateChanged(auth, user => {
     if (user != null) {
       window.location.href = 'dashboard'
@@ -94,7 +94,7 @@ if (window.location.href == mainUrl) {
     if (user != null) {
       initialize(user)
       $('.loader-wrapper').fadeOut("slow")
-      
+
     } else {
       window.location.href = 'login'
     }
@@ -217,11 +217,23 @@ $(document).ready(function () {
 });
 
 // Sign Out button
-$(document).ready(function() {
-  $("#dashboardSignOutButton").click(function(event) {
+$(document).ready(function () {
+  $("#dashboardSignOutButton").click(function (event) {
     event.preventDefault()
-    $(".loader-wrapper").fadeIn("fast", function() {
-      
+    $(".loader-wrapper").fadeIn("fast", function () {
+      signOut(auth)
+        .then(() => {
+          window.location.href = 'login'
+        })
+        .catch((error) => {
+          $(".loader-wrapper").fadeOut("slow", function () {
+            const regex = /(?:\/)([^#]+)(?=#*)/;
+            const errorMesseage = `${regex.exec(error)[0].split(")")[0].split("/")[1]}`
+            const readableErrors = authErrors.filter(error => error.error == errorMesseage)
+            // Passing the readble error to the next function
+            readableError(readableErrors[0].messeage)
+          })
+        })
     })
   })
 })
