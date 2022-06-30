@@ -38,6 +38,7 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   updateProfile,
+  signOut,
 } from 'firebase/auth';
 import { isEmpty } from 'lodash';
 
